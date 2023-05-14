@@ -42,8 +42,10 @@ h2 {
 #download-row p span {
   font-family: math;
 }
-#download-row button {
+#download-row a {
   background-color: #F00530;
+  color: black;
+  text-decoration: none;
   padding: 7px 25px;
   border-radius: 20px;
   font-size: 15px;
@@ -51,7 +53,10 @@ h2 {
   font-weight: 400;
   letter-spacing: 2px;
 }
-#download-row button:hover {
+#download-row a:visited {
+  color: inherit;
+}
+#download-row a:hover {
   background-color: #be0426;
 }
 

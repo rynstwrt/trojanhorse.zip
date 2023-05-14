@@ -58,15 +58,22 @@ h2
         }
     }
 
-    button
+    a
     {
         background-color: $color2;
+        color: black;
+        text-decoration: none;
         padding: 7px 25px;
         border-radius: 20px;
         font-size: 15px;
         font-family: inherit;
         font-weight: $font-weight-regular;
         letter-spacing: 2px;
+
+        &:visited
+        {
+            color: inherit;
+        }
 
         &:hover
         {
