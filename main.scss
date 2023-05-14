@@ -1,0 +1,76 @@
+$color1: #171717;
+$color2: #F00530;
+$color3: darken($color2, 10);
+$font: "Space Mono", monospace;
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+
+@keyframes blink
+{
+    to {visibility: hidden}
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+html, body
+{
+    height: 100%;
+}
+
+body
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $color1;
+    color: $color2;
+    font-family: $font;
+    text-align: center;
+}
+
+h2
+{
+    padding: 0 5px;
+}
+
+#download-row
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+
+    p
+    {
+        margin: 0 20px;
+        animation: blink .5s steps(2, start) infinite alternate;
+
+        span
+        {
+            font-family: math;
+        }
+    }
+
+    button
+    {
+        background-color: $color2;
+        padding: 7px 25px;
+        border-radius: 20px;
+        font-size: 15px;
+        font-family: inherit;
+        font-weight: $font-weight-regular;
+        letter-spacing: 2px;
+
+        &:hover
+        {
+            background-color: $color3;
+        }
+    }
+}
