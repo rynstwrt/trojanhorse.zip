@@ -14,17 +14,26 @@
     <!--  GOOGLE FONTS  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <!--  STYLESHEETS  -->
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <!--  SCRIPTS  -->
+    <script src="js/asciiart.js"></script>
+    <script src="js/stats.js" defer></script>
+    <script src="js/konami.js" defer></script>
 </head>
 <body>
+    <div id="konami">
+        <p>CONGRATION!</p>
+        <img src="assets/ditto.gif">
+    </div>
     <h2>Go ahead... download it...</h2>
     <div id="download-row">
         <p>--<span>&gt;</span></p>
-        <!--  Not actual malware, I promise <3  -->
-        <a href="https://drive.google.com/uc?export=download&id=1COoy57JSHrvrqm7eTxBxr27KpSohCMTk" download="trojanhorse.zip">DOWNLOAD</a>
+        <!--  Not actually malware, I promise <3  -->
+        <a id="download-button" href="https://drive.google.com/uc?export=download&id=1COoy57JSHrvrqm7eTxBxr27KpSohCMTk" download="trojanhorse.zip">DOWNLOAD</a>
         <p><span>&lt;</span>--</p>
     </div>
 </body>

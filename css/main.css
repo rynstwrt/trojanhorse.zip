@@ -1,0 +1,75 @@
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: #F00530;
+  font-family: "Space Mono", monospace;
+  text-align: center;
+}
+
+h2 {
+  padding: 0 5px;
+}
+
+#konami {
+  font-family: "Press Start 2P", cursive;
+}
+#konami p {
+  color: yellow;
+  font-size: 30px;
+  text-align: center;
+}
+#konami img {
+  width: 200px;
+}
+
+#download-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+#download-row p {
+  margin: 0 20px;
+  animation: blink 0.5s steps(2, start) infinite alternate;
+}
+#download-row p span {
+  font-family: math;
+}
+#download-row a {
+  background-color: #F00530;
+  color: black;
+  text-decoration: none;
+  padding: 7px 25px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-family: inherit;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+#download-row a:visited {
+  color: inherit;
+}
+#download-row a:hover {
+  background-color: #be0426;
+}
+
+/*# sourceMappingURL=main.css.map */
