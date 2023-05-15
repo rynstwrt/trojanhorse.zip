@@ -43,8 +43,12 @@ h2
 
 #konami
 {
-    //background-color: green;
     font-family: $konami-font;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 50px;
 
     p
     {
@@ -55,7 +59,8 @@ h2
 
     img
     {
-        width: 200px;
+        width: 50%;
+        margin: 10px 0 20px 0;
     }
 }
 

@@ -7,12 +7,16 @@ let activated = false;
 function activateKonamiCode()
 {
     activated = true;
-    // addKonamiEnter();
+    addKonamiEnter();
 
     console.log("***KONAMI CODE ENTERED***");
     console.log("CONGRATION! YOU DONE IT!");
 
+    const konamiDiv = document.querySelector("#konami");
+    konamiDiv.style.display = "flex";
 
+    const konamiAudio = document.querySelector("#konami > audio");
+    konamiAudio.play();
 }
 
 document.addEventListener("keydown", event =>
@@ -26,5 +30,3 @@ document.addEventListener("keydown", event =>
     if (JSON.stringify(recentKeys) === konamiCode)
         activateKonamiCode();
 });
-
-activateKonamiCode()
