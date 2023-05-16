@@ -1,51 +1,46 @@
 const downloadButton = document.querySelector("#download-button");
-const storage = KVdb.bucket(secrets.KVDB_BUCKET_ID).localStorage();
-const storageKeys = {
-    VISITS: "page_visits",
-    DOWNLOADS: "downloads",
-    KONAMI_ENTERS: "konami_enters"
-};
 
-async function getNewVisitCount()
+function getVisitCount()
 {
-    let visits = await storage.getItem(storageKeys.VISITS);
-    return (visits) ? Number(visits) + 1 : 1;;
+    let visits = localStorage.getItem("page_visits");
+    visits = (visits) ? Number(visits) + 1 : 1;
+    localStorage.setItem("page_visits", visits.toString());
+    return visits;
 }
 
-async function getDownloadCount()
+function getDownloadCount()
 {
-    let downloads = await storage.getItem(storageKeys.DOWNLOADS);
-    return (downloads) ? Number(downloads) : 0;
+    let downloads = localStorage.getItem("downloads");
+    downloads = (downloads) ? Number(downloads) : 0;
+    return downloads
 }
 
-async function getKonamiEnters()
+function getKonamiEnters()
 {
-    let konamiEnters = storage.getItem(storageKeys.KONAMI_ENTERS);
-    return (konamiEnters) ? Number(konamiEnters) : 0;
+    let konamiEnters = localStorage.getItem("konami_enters");
+    konamiEnters = (konamiEnters) ? Number(konamiEnters) : 0;
+    return konamiEnters;
 }
 
-async function addKonamiEnter()
+function addKonamiEnter()
 {
-    const newKonamiEnters = await getKonamiEnters() + 1;
-    storage.setItem(storageKeys.KONAMI_ENTERS, newKonamiEnters.toString());
+    const newKonamiEnters = getKonamiEnters() + 1;
+    localStorage.setItem("konami_enters", newKonamiEnters.toString());
 }
 
-async function logStats()
+function logStats()
 {
     console.log("[-- STATS --]")
-    console.log(`VISITORS: ${await getNewVisitCount()}`);
-    console.log(`DOWNLOADS: ${await getDownloadCount()}`);
-    console.log(`KONAMI CODES: ${await getKonamiEnters()}`);
+    console.log(`VISITORS: ${getVisitCount()}`);
+    console.log(`DOWNLOADS: ${getDownloadCount()}`);
+    console.log(`KONAMI CODES: ${getKonamiEnters()}`);
     console.log("[-----------]");
 }
 
-logStats().then(console.log);
+logStats();
 
 downloadButton.addEventListener("click", () =>
 {
-    getDownloadCount().then(downloads =>
-    {
-        const newDownloads = downloads + 1;
-        storage.setItem(storageKeys.DOWNLOADS, newDownloads.toString());
-    });
+    const newDownloads = getDownloadCount() + 1;
+    localStorage.setItem("downloads", newDownloads.toString());
 });
