@@ -1,47 +1,51 @@
 const downloadButton = document.querySelector("#download-button");
-// const kvdbStorage = KVdb.bucket("").localStorage();
-s
-function getVisitCount()
+const storage = KVdb.bucket(secrets.KVDB_BUCKET_ID).localStorage();
+const storageKeys = {
+    VISITS: "page_visits",
+    DOWNLOADS: "downloads",
+    KONAMI_ENTERS: "konami_enters"
+};
+
+async function getNewVisitCount()
 {
-    let visits = localStorage.getItem("page_visits");
-    visits = (visits) ? Number(visits) + 1 : 1;
-    localStorage.setItem("page_visits", visits.toString());
-    return visits;
+    let visits = await storage.getItem(storageKeys.VISITS);
+    return (visits) ? Number(visits) + 1 : 1;;
 }
 
-function getDownloadCount()
+async function getDownloadCount()
 {
-    let downloads = localStorage.getItem("downloads");
-    downloads = (downloads) ? Number(downloads) : 0;
-    return downloads
+    let downloads = await storage.getItem(storageKeys.DOWNLOADS);
+    return (downloads) ? Number(downloads) : 0;
 }
 
-function getKonamiEnters()
+async function getKonamiEnters()
 {
-    let konamiEnters = localStorage.getItem("konami_enters");
-    konamiEnters = (konamiEnters) ? Number(konamiEnters) : 0;
-    return konamiEnters;
+    let konamiEnters = storage.getItem(storageKeys.KONAMI_ENTERS);
+    return (konamiEnters) ? Number(konamiEnters) : 0;
 }
 
-function addKonamiEnter()
+async function addKonamiEnter()
 {
-    const newKonamiEnters = getKonamiEnters() + 1;
-    localStorage.setItem("konami_enters", newKonamiEnters.toString());
+    const newKonamiEnters = await getKonamiEnters() + 1;
+    storage.setItem(storageKeys.KONAMI_ENTERS, newKonamiEnters.toString());
 }
 
-function logStats()
+async function logStats()
 {
     console.log("[-- STATS --]")
-    console.log(`VISITORS: ${getVisitCount()}`);
-    console.log(`DOWNLOADS: ${getDownloadCount()}`);
-    console.log(`KONAMI CODES: ${getKonamiEnters()}`);
+    console.log(`VISITORS: ${await getNewVisitCount()}`);
+    console.log(`DOWNLOADS: ${await getDownloadCount()}`);
+    console.log(`KONAMI CODES: ${await getKonamiEnters()}`);
     console.log("[-----------]");
 }
 
-logStats();
+logStats().then(console.log);
 
 downloadButton.addEventListener("click", () =>
 {
-    const newDownloads = getDownloadCount() + 1;
-    localStorage.setItem("downloads", newDownloads.toString());
+    getDownloadCount().then(downloads =>
+    {
+        const newDownloads = downloads + 1;
+        storage.setItem(storageKeys.DOWNLOADS, newDownloads.toString());
+    });
 });
