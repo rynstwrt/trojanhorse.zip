@@ -30,6 +30,8 @@ function addKonamiEnter()
 
 function logStats()
 {
+    console.log("NOW USING NETLIFY!");
+    
     console.log("[-- STATS --]")
     console.log(`VISITORS: ${getVisitCount()}`);
     console.log(`DOWNLOADS: ${getDownloadCount()}`);
