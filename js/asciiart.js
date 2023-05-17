@@ -125,4 +125,7 @@ const name1 = ` **********
 
 const asciiArts = [fox1, fox2, fox3, name1];
 const selected = asciiArts[Math.floor(Math.random() * asciiArts.length)];
+
+console.log("HAVE SOME ASCII ART!\n\n");
 console.log(selected);
+console.log("\n\n");

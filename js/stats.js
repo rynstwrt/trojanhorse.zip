@@ -2,6 +2,7 @@ const downloadButton = document.querySelector("#download-button");
 const storageKeys = {
     VISITS: "page_visits",
     DOWNLOADS: "downloads",
+    TIMEZONES: "time_zones",
     KONAMI_ENTERS: "konami_enters"
 };
 
@@ -35,6 +36,24 @@ async function getDownloadCount()
     return downloads;
 }
 
+async function getNewTimezones()
+{
+    const currentTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    let timezonesString = await kvdbStorage.getItem(storageKeys.TIMEZONES);
+    timezonesString = timezonesString ? timezonesString : "";
+
+    const timezoneArr = timezonesString.split(",");
+
+    if (!timezoneArr.includes(currentTimezone))
+    {
+        timezoneArr.push(currentTimezone);
+        await kvdbStorage.setItem(storageKeys.TIMEZONES, timezoneArr.toString());
+    }
+
+    return timezoneArr.length;
+}
+
 async function getKonamiEnters()
 {
     let konamiEnters = await kvdbStorage.getItem(storageKeys.KONAMI_ENTERS);
@@ -53,13 +72,18 @@ function addKonamiEnter()
 
 async function logStats()
 {
-    kvdbStorage = KVdb.bucket(await getKVDBBucketID()).localStorage();
+    console.log("LOADING STATS...\n\n");
 
-    console.log("[-- STATS --]")
-    console.log(`VISITORS: ${await getNewVisitCount()}`);
-    console.log(`DOWNLOADS: ${await getDownloadCount()}`);
-    console.log(`KONAMI CODES: ${await getKonamiEnters()}`);
-    console.log("[-----------]")
+    kvdbStorage = KVdb.bucket(await getKVDBBucketID()).localStorage();
+    const visits = await getNewVisitCount();
+    const downloads = await getDownloadCount();
+    const timezones = await getNewTimezones();
+    const konamiEnters = await getKonamiEnters();
+
+    console.log(`VISITORS: ${visits}`);
+    console.log(`DOWNLOADS: ${downloads}`);
+    console.log(`UNIQUE TIME ZONES: ${timezones}`);
+    console.log(`KONAMI CODES: ${konamiEnters}`);
 }
 
 logStats();

@@ -1,0 +1,1 @@
+console.log("Curious about this website? Check out the GitHub repo!\nhttps://github.com/rynstwrt/trojanhorse.zip/\n\n");
