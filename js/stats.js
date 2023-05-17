@@ -72,7 +72,7 @@ function addKonamiEnter()
 
 async function logStats()
 {
-    console.log("LOADING STATS...\n\n");
+    console.log("Loading stats...\n\n");
 
     kvdbStorage = KVdb.bucket(await getKVDBBucketID()).localStorage();
     const visits = await getNewVisitCount();
