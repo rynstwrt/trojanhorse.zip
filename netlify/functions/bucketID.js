@@ -1,4 +1,7 @@
 exports.handler = async function(event, ctx)
 {
-    return process.env.KVDB_BUCKET_ID;
+    return {
+        statusCode: 200,
+        body: JSON.stringify({id: process.env.KVDB_BUCKET_ID})
+    };
 }
